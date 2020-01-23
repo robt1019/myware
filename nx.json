@@ -1,0 +1,28 @@
+{
+  "npmScope": "myware",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "physics-simulator": {
+      "tags": []
+    },
+    "physics-simulator-e2e": {
+      "tags": [],
+      "implicitDependencies": ["physics-simulator"]
+    },
+    "api": {
+      "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
+    }
+  }
+}

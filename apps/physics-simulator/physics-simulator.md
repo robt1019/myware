@@ -39,7 +39,7 @@ Other ideas...
 
 
 Step 1) Deploy something using something modern (hello world)
-  - Github pages?
   - Heroku? Fuck it I'll just use this
   - Just deploy client code to start with - Use React - make some hello world shit
-  - use semantic release to automate all the shit
+  - use semantic release to automate all the shit 
+  - tag hello world generated app with a version and deploy it using semantic release and Travis

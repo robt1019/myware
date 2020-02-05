@@ -43,3 +43,6 @@ Step 1) Deploy something using something modern (hello world)
   - Just deploy client code to start with - Use React - make some hello world shit
   - use semantic release to automate all the shit 
   - tag hello world generated app with a version and deploy it using semantic release and Travis
+
+Step 2)
+  - First visualisation - unit circle? With trigonometric identities etc. on it.

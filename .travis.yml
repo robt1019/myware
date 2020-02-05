@@ -6,8 +6,17 @@ cache:
    - node_modules
 script:
   - npm run affected:lint:ci
+  - npm run affected:build:ci
   - npm run affected:test:ci
   - npm run affected:e2e:ci
-  - npm run affected:build:ci
 on:
   branch: master
+jobs:
+  include:
+    - stage: release
+    node_js: lts/*
+    deploy:
+      provider: script
+      skip_cleanup: true
+      script:
+        - npm run semantic-release

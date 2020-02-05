@@ -5,9 +5,22 @@ cache:
   directories:
    - node_modules
 script:
-  - npm run affected:lint:ci
-  - npm run affected:test:ci
-  - npm run affected:e2e:ci
-  - npm run affected:build:ci
+  - npm run affected:lint
+  - npm run affected:test
+  - npm run affected:e2e
+  - npm run affected:build
 on:
   branch: master
+
+jobs:
+  include:
+    # Define the release stage that runs semantic-release
+    - stage: release
+      node_js: lts/*
+      # Advanced: optionally overwrite your default `script` step to skip the tests
+      script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release

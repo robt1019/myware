@@ -13,6 +13,7 @@ What do I actually want this application to do?
  - especially uniform circular motion, and the idea that velocity as a vector is changing even if it maintains a constant speed, but changes direction
  - show the derivation of uniform circular motion equations somehow in order to give some sort of intuitive sense of why they make sense
  - work out how to render equations to a browser
+ - show my progress on early morning goals - use D3?
 
 Uniform cirular motion - why? Because it makes no effin sense to me and I'd like it to.
 

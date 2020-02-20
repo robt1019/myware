@@ -13,7 +13,7 @@ export const App = () => {
   return (
     <>
       <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to physics-simulator!</h1>
+        <h1>Welcome to physics-simulator! Now with changes!!!</h1>
         <img
           width="450"
           src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"

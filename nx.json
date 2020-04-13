@@ -30,6 +30,9 @@
     "tic-tac-toe-e2e": {
       "tags": [],
       "implicitDependencies": ["tic-tac-toe"]
+    },
+    "orbits": {
+      "tags": []
     }
   },
   "tasksRunnerOptions": {

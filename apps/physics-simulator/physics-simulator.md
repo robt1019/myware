@@ -43,3 +43,15 @@ Step 1) Deploy something using something modern (hello world)
   - Just deploy client code to start with - Use React - make some hello world shit
   - use semantic release to automate all the shit 
   - tag hello world generated app with a version and deploy it using semantic release and Travis
+
+
+multiplayer physics sandbox - set up physics rules, both players can add objects to system
+
+start with bouncing ball, and define gravity and size of room.
+
+will need:
+  - a backend with business logic and access to a database, which exposes a public API, use node because why not
+  - a language for communicating user inputs to the server, and game state back to the user's session maybe via websockets?
+  - a way of authenticating users (login I guess...), regular 'ol http service
+  - a database for storing user details
+  - a way of rendering the fizziks stuff nicely (webgl probs)

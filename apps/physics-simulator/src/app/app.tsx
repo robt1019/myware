@@ -1,18 +1,18 @@
-import { TwoDimensionalOrbitSimulation, TwoDimensionalPlanet } from '@myware/api-interfaces';
-import { getTwoDimensionalOrbitSimulation } from '@myware/orbits';
+import { TwoDimensionalOrbitSimState, TwoDimensionalPlanet } from '@myware/api-interfaces';
 import React, { useEffect, useState } from 'react';
 import TwoDimensionalPlanetForm from './two-dimensional-planet-form/two-dimensional-planet-form';
+import TwoDimensionalOrbitSimulator from './two-dimensional-orbit-simulator/two-dimensional-orbit-simulator';
 
 export const App = () => {
   const [orbitSimulation, setOrbitSimulation] = useState<
-    Partial<TwoDimensionalOrbitSimulation>
-  >({});
+    TwoDimensionalOrbitSimState
+  >(undefined);
 
   const [planets, setPlanets] = useState<TwoDimensionalPlanet[]>([]);
 
   useEffect(() => {
     if (planets && planets.length) {
-      setOrbitSimulation(getTwoDimensionalOrbitSimulation(planets));
+      setOrbitSimulation({plane: {width: 400, height: 500}, planets});
     }
   }, [planets]);
 
@@ -22,13 +22,11 @@ export const App = () => {
 
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome to physics-simulator!</h1>
-      </div>
 
       <TwoDimensionalPlanetForm onSubmit={addPlanet}></TwoDimensionalPlanetForm>
 
-      <div>{JSON.stringify(orbitSimulation)}</div>
+      <TwoDimensionalOrbitSimulator simState={orbitSimulation}></TwoDimensionalOrbitSimulator>
+
     </>
   );
 };

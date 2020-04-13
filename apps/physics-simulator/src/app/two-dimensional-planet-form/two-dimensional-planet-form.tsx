@@ -23,25 +23,33 @@ export interface TwoDimensionalPlanetFormProps {
 export const TwoDimensionalPlanetForm = (
   props: TwoDimensionalPlanetFormProps
 ) => {
-  const name = useFormInput('');
-  const massInKg = useFormInput('');
-  const radiusInMetres = useFormInput('');
+  const name = useFormInput('planet1');
+  const massInKg = useFormInput('500');
+  const radiusInMetres = useFormInput('100');
+  const xCoordinate = useFormInput('100');
+  const yCoordinate = useFormInput('200');
 
   const submit = () => {
-    if (name.value && massInKg.value && radiusInMetres.value) {
+    if (name.value && massInKg.value && radiusInMetres.value && xCoordinate.value && yCoordinate.value) {
       props.onSubmit({
         name: name.value,
         massInKg: parseInt(massInKg.value),
-        radiusInMetres: parseInt(radiusInMetres.value)
+        radiusInMetres: parseInt(radiusInMetres.value),
+        position: {
+          x: parseInt(xCoordinate.value),
+          y: parseInt(yCoordinate.value),
+        }
       });
     }
   };
 
   return (
     <>
-      <input {...name}></input>
-      <input {...massInKg}></input>
-      <input {...radiusInMetres}></input>
+      <input type="text" placeholder="name" {...name}></input>
+      <input type="number" placeholder="mass in kg" {...massInKg}></input>
+      <input type="number" placeholder="radius in metres" {...radiusInMetres}></input>
+      <input type="number" placeholder="x coord" {...xCoordinate}></input>
+      <input type="number" placeholder="y coord" {...yCoordinate}></input>
       <button onClick={submit}>Add planet</button>
     </>
   );

@@ -11,7 +11,7 @@ export interface TwoDimensionalPlanet {
   name: string;
   massInKg: number;
   radiusInMetres: number;
-  position?: TwoDimensionalPosition;
+  position: TwoDimensionalPosition;
 }
 
 export interface TwoDimensionalPlane {
@@ -19,7 +19,7 @@ export interface TwoDimensionalPlane {
   width: number;
 }
 
-export interface TwoDimensionalOrbitSimulation {
+export interface TwoDimensionalOrbitSimState {
   plane: TwoDimensionalPlane,
   planets: TwoDimensionalPlanet[]
 }

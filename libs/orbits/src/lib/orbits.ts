@@ -1,15 +1,17 @@
-import { TwoDimensionalPlanet, TwoDimensionalOrbitSimulation } from '@myware/api-interfaces';
+import { TwoDimensionalOrbitSimState } from '@myware/api-interfaces';
 
-  const getTwoDimensionalOrbitSimulation = (planets: TwoDimensionalPlanet[]): TwoDimensionalOrbitSimulation => {
-    return {
-      plane: {
-        height: 1000,
-        width: 1000,
-      },
-      planets
-    }
-  }
+const tick = (simState: TwoDimensionalOrbitSimState) => {
+  return {
+    ...simState,
+    planets: simState.planets.map(planet => ({
+      ...planet,
+      position: {
+        ...planet.position,
+        x: planet.position.x + 5,
+        y: planet.position.y + 5
+      }
+    }))
+  };
+};
 
-export {
-  getTwoDimensionalOrbitSimulation
-}
+export { tick };

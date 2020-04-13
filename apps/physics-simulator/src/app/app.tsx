@@ -1,25 +1,53 @@
-import React, { useEffect, useState } from 'react';
-import { Message } from '@myware/api-interfaces';
+import { TwoDimensionalOrbitSimulation } from '@myware/api-interfaces';
+import { getTwoDimensionalOrbitSimulation } from '@myware/orbits';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+
+const useFormInput = (initialValue: string) => {
+  const [value, setValue] = useState(initialValue);
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setValue(e.target.value);
+  }
+
+  return {
+    value,
+    onChange: handleChange
+  };
+};
 
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
+
+  const name = useFormInput('');
+  const massInKg = useFormInput('');
+  const radiusInMetres = useFormInput('');
+
+  const [orbitSimulation, setOrbitSimulation] = useState<
+    Partial<TwoDimensionalOrbitSimulation>
+  >({});
 
   useEffect(() => {
-    fetch('/api')
-      .then(r => r.json())
-      .then(setMessage);
-  }, []);
+    if (name.value && massInKg.value && radiusInMetres.value) {
+      setOrbitSimulation(
+        getTwoDimensionalOrbitSimulation([
+          {
+            name: name.value,
+            massInKg: parseInt(massInKg.value),
+            radiusInMetres: parseInt(radiusInMetres.value)
+          }
+        ])
+      );
+    }
+  }, [name.value, massInKg.value, radiusInMetres.value]);
 
   return (
     <>
       <div style={{ textAlign: 'center' }}>
         <h1>Welcome to physics-simulator!</h1>
-        <img
-          width="450"
-          src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
-        />
       </div>
-      <div>{m.message}</div>
+      <input {...name}></input>
+      <input {...massInKg}></input>
+      <input {...radiusInMetres}></input>
+      <div>{JSON.stringify(orbitSimulation)}</div>
     </>
   );
 };

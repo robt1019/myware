@@ -1,52 +1,33 @@
-import { TwoDimensionalOrbitSimulation } from '@myware/api-interfaces';
+import { TwoDimensionalOrbitSimulation, TwoDimensionalPlanet } from '@myware/api-interfaces';
 import { getTwoDimensionalOrbitSimulation } from '@myware/orbits';
-import React, { ChangeEvent, useEffect, useState } from 'react';
-
-const useFormInput = (initialValue: string) => {
-  const [value, setValue] = useState(initialValue);
-
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setValue(e.target.value);
-  }
-
-  return {
-    value,
-    onChange: handleChange
-  };
-};
+import React, { useEffect, useState } from 'react';
+import TwoDimensionalPlanetForm from './two-dimensional-planet-form/two-dimensional-planet-form';
 
 export const App = () => {
-
-  const name = useFormInput('');
-  const massInKg = useFormInput('');
-  const radiusInMetres = useFormInput('');
-
   const [orbitSimulation, setOrbitSimulation] = useState<
     Partial<TwoDimensionalOrbitSimulation>
   >({});
 
+  const [planets, setPlanets] = useState<TwoDimensionalPlanet[]>([]);
+
   useEffect(() => {
-    if (name.value && massInKg.value && radiusInMetres.value) {
-      setOrbitSimulation(
-        getTwoDimensionalOrbitSimulation([
-          {
-            name: name.value,
-            massInKg: parseInt(massInKg.value),
-            radiusInMetres: parseInt(radiusInMetres.value)
-          }
-        ])
-      );
+    if (planets && planets.length) {
+      setOrbitSimulation(getTwoDimensionalOrbitSimulation(planets));
     }
-  }, [name.value, massInKg.value, radiusInMetres.value]);
+  }, [planets]);
+
+  const addPlanet = (planet: TwoDimensionalPlanet) => {
+    setPlanets([...planets, planet]);
+  };
 
   return (
     <>
       <div style={{ textAlign: 'center' }}>
         <h1>Welcome to physics-simulator!</h1>
       </div>
-      <input {...name}></input>
-      <input {...massInKg}></input>
-      <input {...radiusInMetres}></input>
+
+      <TwoDimensionalPlanetForm onSubmit={addPlanet}></TwoDimensionalPlanetForm>
+
       <div>{JSON.stringify(orbitSimulation)}</div>
     </>
   );

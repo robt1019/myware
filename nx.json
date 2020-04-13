@@ -23,6 +23,13 @@
     },
     "api-interfaces": {
       "tags": []
+    },
+    "tic-tac-toe": {
+      "tags": []
+    },
+    "tic-tac-toe-e2e": {
+      "tags": [],
+      "implicitDependencies": ["tic-tac-toe"]
     }
   },
   "tasksRunnerOptions": {
